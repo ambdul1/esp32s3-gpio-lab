@@ -8,6 +8,8 @@ namespace
 {
 	constexpr char TAG[] = "GPIO_CONFIG_LAB";
 	constexpr gpio_num_t LED_GPIO = GPIO_NUM_7;
+    constexpr int SHORT_DELAY_MS = 200;
+    constexpr int LONG_DELAY_MS = 1000;
 }
 
 extern "C" void app_main()
@@ -52,10 +54,21 @@ extern "C" void app_main()
 	for (;;)
 	{
 		gpio_set_level(LED_GPIO, 1);
-		vTaskDelay(pdMS_TO_TICKS(1000));
+		ESP_LOGI(TAG, "allume %d ms", SHORT_DELAY_MS);
+		vTaskDelay(pdMS_TO_TICKS(SHORT_DELAY_MS));
+
+        gpio_set_level(LED_GPIO, 0);
+		ESP_LOGI(TAG, "eteinte %d ms", SHORT_DELAY_MS);
+		vTaskDelay(pdMS_TO_TICKS(SHORT_DELAY_MS));
+
+        gpio_set_level(LED_GPIO, 1);
+		ESP_LOGI(TAG, "allume %d ms", SHORT_DELAY_MS);
+		vTaskDelay(pdMS_TO_TICKS(SHORT_DELAY_MS));
 
 		gpio_set_level(LED_GPIO, 0);
-		vTaskDelay(pdMS_TO_TICKS(1000));
+		ESP_LOGI(TAG, "eteinte %d ms", LONG_DELAY_MS);
+		vTaskDelay(pdMS_TO_TICKS(LONG_DELAY_MS));
+
 	}
 
 
