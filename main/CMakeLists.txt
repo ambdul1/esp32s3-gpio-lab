@@ -1,4 +1,4 @@
 idf_component_register(
-    SRC "."
+    SRCS "main.cpp"
     INCLUDE_DIRS "."
 )
